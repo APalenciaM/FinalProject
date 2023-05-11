@@ -21,31 +21,38 @@ export default {
 
 <template>
     <div id="userDiv">
-        <div id="userinterface">
             <div id="userNavBar">
-                <button @click=LogOut()>LogOut</button>
+                <img @click=LogOut() src="../assets/logout_FILL0_wght700_GRAD200_opsz48.png"/>
             </div>
-        </div>
         <div id="dashboarddiv">
-        <router-view></router-view>
+            <router-view></router-view>
         </div>
     </div>
 </template>
 
 <style scoped>
 
+img {
+    opacity: 0.7;
+}
 #userDiv {
    width: 100vw;
    height: 100vh;
 
    display: grid;
    grid-template-columns: repeat(15,1fr);
+   overflow-x: hidden;
 }
 
 #userNavBar {
-    background-color: #928c99;
-    width: 60%;
+    position: fixed;
+    background-color: rgba(0, 120, 240, 0.3);
+    width: 5%;
     height: 100%;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
 }
 
 #dashboarddiv {

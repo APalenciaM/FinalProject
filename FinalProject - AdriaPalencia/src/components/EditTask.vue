@@ -79,7 +79,7 @@ export default {
         </div>
         <div id="descriptionTaskDiv">
             <strong class="me-auto">Description:</strong>
-            <textarea id="descriptionTextarea">{{ description }}</textarea>
+            <textarea class="grey" id="descriptionTextarea">{{ description }}</textarea>
         </div>
         <div id="stageDiv">
             <strong class="me-auto">Stage:</strong>
@@ -108,15 +108,23 @@ export default {
                 <option v-for="user in AllUsers">{{ user.username }}</option>
             </select>
         </div>
-        <button id="createTaskButton" @click="editTask()">Edit</button>
-        <button id="createTaskButton" @click="deleteTaskbyId()">Delete</button>
+        <button id="editTaskButton" @click="editTask()">Edit</button>
+        <div id="deleteButtonDiv">
+            <div>
+                <button id="deleteTaskButton" @click="deleteTaskbyId()">Delete</button>
+            </div>
+        </div>
+        
     </div>
 </template>
 
 <style scoped>
 h2 {
     color: #0070cc;
+    opacity: 0.7;
+
 }
+
 
 .grey {
     background-color: rgba(224, 223, 223, 0.85);
@@ -152,6 +160,10 @@ option {
     zoom: 1.5;
 }
 
+#deleteButtonDiv {
+    display: flex;
+    justify-content: end;
+}
 input:focus, select:focus, select, input.form-control:focus {
 
 outline:none !important;
@@ -166,12 +178,26 @@ box-shadow: none;
 
 }
 
-#createTaskButton {
+#deleteTaskButton {
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    background-color: #e62626;
+    color: white;
+    font-weight: bolder;
+    width: 50%;
+    opacity: 0.7;
+
+}
+
+#editTaskButton {
     box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
     border-radius: 16px;
     background-color: #4187d6;
     color: white;
     font-weight: bolder;
+    margin-bottom: 20px;
+    opacity: 0.7;
+
 }
 
 

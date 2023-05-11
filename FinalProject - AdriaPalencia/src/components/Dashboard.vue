@@ -66,6 +66,10 @@ export default {
     <div id="dashboardDiv">
         <div id="headerDasboardDiv">
             <h1>Hello, {{ username }}</h1>
+
+            <div id="optionsDiv">
+
+            </div>
         </div>
         <div id="toDoDiv">
             <div class="header">
@@ -115,6 +119,8 @@ export default {
     height: 100%;
     display: grid;
     padding-bottom: 50px;
+
+    grid-template-rows: minmax(100px, 100px);
 }
 
 .list {
@@ -131,6 +137,7 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
+    grid-row: 2;
 }
 
 .header{
@@ -140,16 +147,13 @@ export default {
 #inProgressDiv {
     display: flex;
     flex-direction: column;
-}
-
-#toDoDiv {
-    display: flex;
-    flex-direction: column;
+    grid-row: 2;
 }
 
 #doneDiv {
     display: flex;
     flex-direction: column;
+    grid-row: 2;
 }
 
 #taskPanelDiv {

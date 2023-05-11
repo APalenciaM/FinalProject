@@ -84,6 +84,8 @@ export default {
 
 h2 {
     color: #0070cc;
+    opacity: 0.7;
+
 }
 
 .grey {
@@ -138,6 +140,7 @@ box-shadow: none;
     box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
     border-radius: 16px;
     background-color: #4187d6;
+    opacity: 0.7;
     color: white;
     font-weight: bolder;
 }
@@ -164,7 +167,7 @@ box-shadow: none;
 }
 
 #titleTaskInput {
-    background: rgb(226, 232, 233);;
+    background: rgba(224, 223, 223, 0.85);;
     border-radius: 4px 4px 0px 0px;
     border: 0;
     outline: none;
@@ -203,6 +206,7 @@ input {
     overflow-y: scroll;
     scrollbar-width: none; 
     border-radius: 6px;
+
         
     }
 
