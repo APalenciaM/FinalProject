@@ -135,6 +135,7 @@ import ToDoStore from '../stores/task'
 
     input {
         min-width: 10rem;
+        outline: none;
     }
 
     button {

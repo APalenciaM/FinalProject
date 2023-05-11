@@ -4,6 +4,7 @@ import sha256 from 'crypto-js/sha256';
 import { mapActions, mapState } from 'pinia';
 import ToDoStore from '../stores/task'
 
+    let myuser;
 
     export default {
         name: `Login`,
@@ -31,10 +32,11 @@ import ToDoStore from '../stores/task'
                     return;
                 }
                 if(user.username == username && user.passw == passw){
+                    localStorage.username = user.username;
                     this.$router.push(`/ironhack/${username}/dashboard`);
                 }
             },
-            ...mapActions(ToDoStore, ['getUser','fetchAll'])
+            ...mapActions(ToDoStore, ['getUser','fetchAll','getUserByUsername'])
         }
     }
 </script>
@@ -131,6 +133,7 @@ import ToDoStore from '../stores/task'
 
     input {
         min-width: 10rem;
+        outline: none;
     }
 
     button {

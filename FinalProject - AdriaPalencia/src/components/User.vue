@@ -9,7 +9,9 @@ export default {
     },methods: {
         async prueba() {
             const { data } = await supabase.from('prueba').select().eq('id', 2).single();
-            console.log(data);
+        }, LogOut() {
+            localStorage.clear();
+            this.$router.push(`/login`);
         }
     },created() {
     },
@@ -20,6 +22,9 @@ export default {
 <template>
     <div id="userDiv">
         <div id="userinterface">
+            <div id="userNavBar">
+                <button @click=LogOut()>LogOut</button>
+            </div>
         </div>
         <div id="dashboarddiv">
         <router-view></router-view>
@@ -37,11 +42,13 @@ export default {
    grid-template-columns: repeat(15,1fr);
 }
 
-#userinterface {
+#userNavBar {
     background-color: #928c99;
+    width: 60%;
+    height: 100%;
 }
 
 #dashboarddiv {
-    grid-column: 2/8;
+    grid-column: 2/16;
 }
 </style>
