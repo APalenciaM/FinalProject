@@ -51,7 +51,6 @@ export default defineStore('task', {
         },
         async getTaskList() {
             this.taskList = [];
-            console.log(this.taskList);
             let { data,error } =  await supabase.from('tasks').select();
             
             this.taskList = data;

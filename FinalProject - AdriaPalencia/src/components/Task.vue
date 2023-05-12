@@ -76,6 +76,7 @@ export default {
         height: 2.4rem;
         border-top-right-radius: 30px;
         border-top-left-radius: 30px;
+        padding-left: 20px;
     }
 
     #tastkTextArea {

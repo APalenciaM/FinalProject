@@ -55,7 +55,7 @@ import ToDoStore from '../stores/task'
                 <input id="usernameInput" placeholder="Username"/>
             </div>
             <div id="passwordLoginDiv">
-                <input id="passwordInput" placeholder="Password"/>
+                <input type="password" id="passwordInput" placeholder="Password"/>
             </div>
             <div id="loginButtonDiv">
                 <button id="loginButton" @click="$event => Login()">Login</button>

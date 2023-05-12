@@ -8,6 +8,7 @@ import EditTask from '../components/EditTask.vue'
 import TaskCreated from '../components/TaskCreated.vue'
 import TaskDeleted from '../components/TaskDeleted.vue'
 import TaskEdited from '../components/TaskEdited.vue'
+import Unauthorized from '../components/Unauthorized.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Login
+    },
+    {
+      path: '/unauthorized',
+      name: 'unauthorized',
+      component: Unauthorized
     },
     {
       path: '/login',

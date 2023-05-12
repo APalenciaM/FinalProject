@@ -14,13 +14,14 @@ export default {
             doneTasks: [],
             username: '',
             changing: false,
+            filtredBy: [],
 
         }
     }, components: {
         Task,
     },
     computed: {
-        ...mapState(ToDoStore, ['taskList','user'])
+        ...mapState(ToDoStore, ['taskList','user','AllUsers'])
     },methods: {
             async List() {
                 this.changing = true;
@@ -40,13 +41,97 @@ export default {
                 }
                 this.changing = false;
             },
+            async initUsers() {
+                await this.getAllUsers();
+            },
             goto(task) {
                 this.$router.push(`/ironhack/${localStorage.username}/dashboard/edit-task/${task.id}`);
             },
-            ...mapActions(ToDoStore, ['getTaskList','fetchAll'])
+            goToCreatTask() {
+                this.$router.push(`/ironhack/${localStorage.username}/dashboard/new-task`);
+            },
+            setFilter(filter) {
+                
+                if(this.filtredBy.includes(filter)){
+                    const spansS = document.querySelectorAll('.spansS');
+                    for(let span of spansS){
+                        if(span.innerText == filter){
+                            span.className = "spans";
+                    };
+                    }
+                    const index = this.filtredBy.indexOf(filter);
+                    
+                    this.filtredBy.splice(index, 1);
+                } else {
+                    
+                    this.filtredBy.push(filter);
+                    const spans = document.querySelectorAll('.spans');
+
+                    for(let span of spans){
+                        if(span.innerText == filter){
+                            span.className = "spansS " + span.className;
+                        };
+                    }
+                }
+
+                if(this.filtredBy.length==0) {
+                    this.toDoList = [];
+                    this.inProgressList = [];
+                    this.doneTasks = [];
+                    for(let task of this.taskList){
+                    
+                    if(task.stage == "do"){
+                        this.toDoList.push(task);
+                    }else if(task.stage == "progress"){
+                        this.inProgressList.push(task);
+                    }else{
+                        this.doneTasks.push(task);
+                    }
+                }
+                    return;
+                }
+                
+
+                this.toDoList = [];
+                this.inProgressList = [];
+                this.doneTasks = [];
+                
+                for(let task of this.taskList){
+
+                    for(let _filter of this.filtredBy){
+                        if (task.assignee == _filter){
+
+                            if(task.stage == "do" ){
+
+                                this.toDoList.push(task);
+
+                            }else if(task.stage == "progress"){
+
+                                this.inProgressList.push(task);
+
+                            }else{
+
+                                this.doneTasks.push(task);
+                            }
+                        }
+                    }
+                }
+
+
+
+            },
+            ...mapActions(ToDoStore, ['getTaskList','fetchAll','getAllUsers'])
     },created() {
+
+            if(!localStorage.username){
+                
+            this.$router.push(`/unauthorized`);
+            }
+
+            this.initUsers();    
             this.List();
             this.username = localStorage.username;
+            
 
             this.$watch(
       () => this.$route.params,
@@ -65,11 +150,13 @@ export default {
 <template>
     <div id="dashboardDiv">
         <div id="headerDasboardDiv">
-            <h1>Hello, {{ username }}</h1>
-
-            <div id="optionsDiv">
-
+            <button @click="goToCreatTask()" id="createTaskButton">+ New Task</button> 
+            <div id="spansDiv">
+                <span id="filterspan">FilterBy:</span>
+                <span @click="setFilter('Unassigned')" class="spans" >Unassigned</span>
+                <span @click="setFilter(user.name)"  class="spans" v-for="user in AllUsers">{{ user.name }}</span>
             </div>
+
         </div>
         <div id="toDoDiv">
             <div class="header">
@@ -114,25 +201,39 @@ export default {
 
 
 <style scoped>
-
+#borderdiv{
+    width: 100%;
+    grid-column: 1/6;
+    grid-row: 1;
+    border-bottom: 1px solid black;
+}
 #dashboardDiv {
     height: 100%;
     display: grid;
     padding-bottom: 50px;
 
-    grid-template-rows: minmax(100px, 100px);
+    grid-template-rows: minmax(100px, 150px);
 }
 
 .list {
     height: 100%;
+    min-width: 21rem;
 }
 
 
 #headerDasboardDiv {
     grid-row: 1;
     grid-column: 1/15;
-
+    display: flex;
+    align-items: end;
+    flex-direction: row;
+    padding-bottom: 25px;
+    margin-bottom: 15px;
+    ;
 }
+
+
+
 #toDoDiv {
     height: 100%;
     display: flex;
@@ -176,5 +277,41 @@ export default {
         padding: 50px;
         min-width: 32rem;
         min-height: 40rem;
+}
+
+#createTaskButton {
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #4187d6;
+    opacity: 0.7;
+    color: white;
+    font-weight: bolder;
+    margin-right: 50px;
+}
+span {
+    font-size: 22px;
+    color: #3f4244;
+
+    font-weight: 400;
+
+    margin: 0 2.5px;
+}
+
+.spans {
+        background-color: white;
+        border-radius: 30px;
+        padding: 0px 7px;
+        border: 1px solid black;
+        color: #6c757d;
+        font-weight: 500;
+}
+
+.spansS {
+        background-color: #135caf;
+        border-radius: 30px;
+        padding: 0px 7px;
+        border: 1px solid black;
+        color: white;
+        font-weight: 500;
 }
 </style>

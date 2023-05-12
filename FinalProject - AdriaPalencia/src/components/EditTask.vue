@@ -81,26 +81,29 @@ export default {
             <strong class="me-auto">Description:</strong>
             <textarea class="grey" id="descriptionTextarea">{{ description }}</textarea>
         </div>
-        <div id="stageDiv">
-            <strong class="me-auto">Stage:</strong>
+        <div id="groupdiv">
+            <div id="colorTaskDiv">
+                <strong class="me-auto">Color:</strong>
+                <select id="selectColor" class="grey" @change="updateColor()" v-model="selected">
+                    
+                    <option class="grey" value="grey"></option>
+                    <option class="green" value="green"></option>
+                    <option class="red" value="red"></option>
+                    <option class="purple" value="purple"></option>
+                    <option class="yellow" value="yellow"></option>
+                </select>
+            </div>
+            <div id="stageDiv">
+                <strong id="stagetitle" class="me-auto">Stage:</strong>
 
-            <select id="selectStage"  class="custom-select" v-model="stage">
-                <option value="do">To Do</option>
-                <option value="progress">In Progress</option>
-                <option value="done">Done</option>
-            </select>
-        </div>
-        <div id="colorTaskDiv">
-            <strong class="me-auto">Color:</strong>
-            <select id="selectColor" class="grey" @change="updateColor()" v-model="selected">
-                
-                <option class="grey" value="grey"></option>
-                <option class="green" value="green"></option>
-                <option class="red" value="red"></option>
-                <option class="purple" value="purple"></option>
-                <option class="yellow" value="yellow"></option>
-            </select>
-        </div>
+                <select id="selectStage"  class="custom-select" v-model="stage">
+                    <option value="do">To Do</option>
+                    <option value="progress">In Progress</option>
+                    <option value="done">Done</option>
+                </select>
+            </div>
+
+        </div>    
         <div id="assigneUser">
             <strong id="assigneetitle" class="me-auto">Assigne:</strong>
             <select id="selectAssignee"  class="custom-select" v-model="assigned">
@@ -119,6 +122,13 @@ export default {
 </template>
 
 <style scoped>
+
+
+#groupdiv {
+    display: flex;
+    flex-direction: row;
+}
+
 h2 {
     color: #0070cc;
     opacity: 0.7;
@@ -243,6 +253,7 @@ box-shadow: none;
     display: flex;
     flex-direction: row;
     margin-bottom: 30px;
+    padding-left: 5rem;
     align-items: center;
 }
 
@@ -252,7 +263,7 @@ box-shadow: none;
     flex-direction: row;
     align-items: center;
     
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 input {
@@ -285,6 +296,6 @@ input {
     }
 
     #selectStage {
-        margin-left: 100px;
+        margin-left: 10px;
     }
 </style>

@@ -28,6 +28,7 @@ import ToDoStore from '../stores/task'
 
                     toast.style.opacity = 1;
                     toastE.style.opacity = 0;
+                    this.$router.push(`/login`);
                     return;
                 }
                 
@@ -56,10 +57,10 @@ import ToDoStore from '../stores/task'
                 <input id="usernameInput" placeholder="Username"/>
             </div>
             <div id="passwordregisterDiv">
-                <input id="passwordInput" placeholder="Password"/>
+                <input type="password" id="passwordInput" placeholder="Password"/>
             </div>
             <div id="passwordRepitregisterDiv">
-                <input id="passwordRepitInput" placeholder="Repit password"/>
+                <input type="password" id="passwordRepitInput" placeholder="Repit password"/>
             </div>
             <div>
                 <button id="registerButton" @click="Register()">Register</button>
