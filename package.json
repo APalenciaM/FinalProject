@@ -30,6 +30,10 @@
     "jquery": "^3.6.4",
     "popper.js": "^1.16.1",
     "prettier": "^2.8.4",
-    "vite": "^4.1.4"
+    "ts-loader": "^9.4.2",
+    "vite": "^4.1.4",
+    "webpack": "^5.82.1",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
   }
 }
