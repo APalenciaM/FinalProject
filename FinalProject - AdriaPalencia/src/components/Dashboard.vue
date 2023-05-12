@@ -48,7 +48,7 @@ export default {
                 this.$router.push(`/ironhack/${localStorage.username}/dashboard/edit-task/${task.id}`);
             },
             goToCreatTask() {
-                this.$router.push(`/ironhack/${localStorage.username}/dashboard/new-task`);
+                this.$router.push(`/ironhack/${localStorage.username}/dashboard`);
             },
             setFilter(filter) {
                 

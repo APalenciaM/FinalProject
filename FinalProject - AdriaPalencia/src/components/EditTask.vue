@@ -18,6 +18,7 @@ export default {
     },methods: {
             async Init() {
                 await this.getTaskbyId(this.$route.params.id);
+                console.log("a");
                 this.description = this.task[0].description;
                 this.title = this.task[0].title;
                 this.color = this.task[0].color;
@@ -57,8 +58,10 @@ export default {
         this.$watch(
       () => this.$route.params,
       (newParams, oldParams) => {
+        console.log(this.$route.params.id);
 
-        if(this.$route.path != "/ironhack/"+localStorage.username+"/dashboard/task-created"){
+        console.log(this.$route.path);
+        if(this.$route.path != "/ironhack/"+localStorage.username+"/dashboard/task-created" && this.$route.path != "/ironhack/"+localStorage.username+"/dashboard"){
             this.Init();
         }
       }

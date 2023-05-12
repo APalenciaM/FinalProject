@@ -11,7 +11,7 @@ export default {
     }, components: {
     },
     computed: {
-        ...mapState(ToDoStore, ['taskList','user','AllUsers'])
+        ...mapState(ToDoStore, ['taskList','user','AllUsers','task'])
     },methods: {
             async createTask() {
                 let title = document.querySelector('#titleTaskInput').value;
