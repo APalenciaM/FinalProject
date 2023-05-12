@@ -19,11 +19,6 @@ const router = createRouter({
       component: Login
     },
     {
-      path: '/unauthorized',
-      name: 'unauthorized',
-      component: Unauthorized
-    },
-    {
       path: '/login',
       name: 'login',
       component: Login
@@ -74,7 +69,12 @@ const router = createRouter({
           ]
         }
       ]
-    }
+    },
+    {
+      path: '/:pathMatch(.*)',
+      name: 'unauthorized',
+      component: Unauthorized
+    },
   ]
 })
 
