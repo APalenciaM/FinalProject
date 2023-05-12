@@ -71,10 +71,14 @@ const router = createRouter({
       ]
     },
     {
-      path: '/:pathMatch(.*)',
-      name: 'unauthorized',
-      component: Unauthorized
+      path: '/404',
+      name: 'page-not-found',
+      component: Unauthorized,
     },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/404'
+    }
   ]
 })
 
