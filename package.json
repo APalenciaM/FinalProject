@@ -10,11 +10,12 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.10",
     "@supabase/supabase-js": "^2.21.0",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.0.0-0",
     "crypto-js": "^4.1.1",
-    "pinia": "^2.0.32",
+    "pinia": "^2.0.36",
     "vue": "^3.2.47",
     "vue-cryptojs": "^2.3.1",
     "vue-router": "^4.2.0"
